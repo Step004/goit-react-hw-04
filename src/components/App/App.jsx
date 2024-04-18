@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <SearchBar onSubmit={handleSubmit} />
+      <SearchBar onSubmit={handleSubmit} search={query} />
 
       {modalIsOpen && (
         <ImageModal
