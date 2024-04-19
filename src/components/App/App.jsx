@@ -30,11 +30,14 @@ function App() {
     e.preventDefault();
     const form = e.target;
     const [input] = form.elements;
-    setQuery(input.value);
+    const inputValue = input.value.trim();
+    if (inputValue === "") {
+      return;
+    }
+    setQuery(inputValue);
     setPage(1);
     setPhotos([]);
-    setTotalPages;
-    0;
+    setTotalPages(0);
     form.reset();
   };
 
