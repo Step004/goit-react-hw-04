@@ -2,15 +2,27 @@ import css from "./SearchBar.module.css";
 import { IoSearch } from "react-icons/io5";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function SearchBar({ onSubmit, search }) {
-  const errorClick = () =>
-    toast.error("Please, enter your text.", {
-      duration: 2000,
-    });
+export default function SearchBar({ onSubmit }) {
+  
+    const onSubmitBar = (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const [input] = form.elements;
+      const inputValue = input.value.trim();
+      if (inputValue === "") {
+         toast.error("Please, enter your text.", {
+           duration: 2000,
+         });
+        return;
+      }
+      onSubmit(inputValue);
+      form.reset();
+  };
+  
   return (
     <header>
       <div className={css.topLine}>
-        <form onSubmit={onSubmit} className={css.form}>
+        <form onSubmit={onSubmitBar} className={css.form}>
           <input
             type="text"
             autoComplete="off"
@@ -18,10 +30,10 @@ export default function SearchBar({ onSubmit, search }) {
             placeholder="Search images and photos"
             className={css.input}
           />
-          <button type="submit" className={css.button} onClick={errorClick}>
+          <button type="submit" className={css.button} >
             <IoSearch />
           </button>
-          {search == '' && <Toaster />}
+          <Toaster />
         </form>
       </div>
     </header>

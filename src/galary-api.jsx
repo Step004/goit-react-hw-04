@@ -12,6 +12,5 @@ export const fetchCards = async (searchQuery, currentPage) => {
       page: currentPage,
     },
   });
-  console.log(response.data);
   return response.data;
 };

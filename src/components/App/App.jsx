@@ -26,19 +26,12 @@ function App() {
     setModalIsOpen(false);
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const [input] = form.elements;
-    const inputValue = input.value.trim();
-    if (inputValue === "") {
-      return;
-    }
-    setQuery(inputValue);
+  const handleSubmit = (query) => {
+    setQuery(query);
     setPage(1);
     setPhotos([]);
     setTotalPages(0);
-    form.reset();
+
   };
 
   const handleLoadMore = () => {
@@ -71,7 +64,7 @@ function App() {
 
   return (
     <>
-      <SearchBar onSubmit={handleSubmit} search={query} />
+      <SearchBar onSubmit={handleSubmit}/>
 
       {modalIsOpen && (
         <ImageModal
